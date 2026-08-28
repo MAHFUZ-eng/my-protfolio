@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahfuz Khan — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EDEEF2;
+    --ink:#17181C;
+    --ink-soft:#54565F;
+    --accent:#2F4CDD;
+    --amber:#F2A93B;
+    --line:#C9CBD3;
+    --card:#FFFFFF;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+  section{padding:64px 0;}
+  .section-title{
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:.08em;margin:0 0 22px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .section-title::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  /* ============ HEADER / NAV ============ */
+  header.top{
+    position:sticky;top:0;z-index:20;
+    background:rgba(237,238,242,.88);backdrop-filter:blur(8px);
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 0;border-bottom:1px solid var(--line);
+  }
+  .logo{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;}
+  .logo span{color:var(--accent);}
+  nav a{
+    font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;
+    color:var(--ink-soft);margin-left:22px;border-bottom:1px solid transparent;
+    transition:border-color .15s, color .15s;
+  }
+  nav a:hover{color:var(--ink);border-color:var(--ink);}
+
+  /* ============ HERO ============ */
+  .hero{padding:64px 0 40px;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);
+    margin:0 0 14px;display:flex;align-items:center;gap:8px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:#2ecc71;box-shadow:0 0 0 3px rgba(46,204,113,.18);animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+  h1{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:clamp(34px,5.4vw,54px);line-height:1.08;margin:0 0 18px;letter-spacing:-0.01em;
+  }
+  h1 em{font-style:normal;color:var(--accent);}
+  .sub{font-size:17px;color:var(--ink-soft);max-width:560px;line-height:1.6;margin:0 0 30px;}
+  .stat-line{
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-soft);
+    display:flex;flex-wrap:wrap;gap:10px 22px;padding-top:22px;border-top:1px dashed var(--line);
+  }
+  .stat-line b{color:var(--ink);font-weight:600;}
+  .cta-row{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;}
+  .btn{
+    font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;
+    padding:11px 20px;border-radius:8px;border:1px solid var(--ink);transition:all .15s;
+  }
+  .btn.primary{background:var(--ink);color:#fff;}
+  .btn.primary:hover{background:var(--accent);border-color:var(--accent);}
+  .btn.ghost{color:var(--ink);}
+  .btn.ghost:hover{background:var(--card);}
+
+  /* ============ TERMINAL / BUILD LOG ============ */
+  .terminal{background:#14151A;border-radius:var(--radius);padding:20px 22px;overflow:hidden;}
+  .terminal-bar{display:flex;gap:6px;margin-bottom:14px;}
+  .terminal-bar span{width:9px;height:9px;border-radius:50%;background:#3a3b42;}
+  .term-line{font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c7c9d4;white-space:pre-wrap;word-break:break-word;}
+  .term-line .path{color:#6b8cff;}
+  .term-line .amber{color:var(--amber);}
+  .term-line .grey{color:#6f7180;}
+  .cursor{display:inline-block;width:7px;height:14px;background:var(--amber);margin-left:2px;vertical-align:middle;animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ============ ABOUT ============ */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start;}
+  .about-text p{font-size:15.5px;line-height:1.75;color:var(--ink-soft);margin:0 0 16px;}
+  .fact-list{list-style:none;margin:0;padding:0;font-family:'JetBrains Mono',monospace;font-size:13px;}
+  .fact-list li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink-soft);}
+  .fact-list li b{color:var(--ink);font-weight:600;}
+  @media (max-width:700px){.about-grid{grid-template-columns:1fr;}}
+
+  /* ============ SKILLS ============ */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;}
+  .skill-row{margin-bottom:14px;}
+  .skill-label{
+    display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;color:var(--ink-soft);margin-bottom:6px;
+  }
+  .skill-label b{color:var(--ink);}
+  .skill-track{height:6px;border-radius:99px;background:var(--line);overflow:hidden;}
+  .skill-fill{height:100%;border-radius:99px;background:var(--accent);}
+
+  /* ============ PROJECTS ============ */
+  .controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+  .chip{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;padding:6px 13px;border-radius:999px;
+    border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink-soft);transition:all .15s;
+  }
+  .chip:hover{border-color:var(--accent);color:var(--ink);}
+  .chip.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    text-decoration:none;display:flex;flex-direction:column;transition:transform .15s, box-shadow .15s, border-color .15s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(23,24,28,.08);border-color:var(--ink);}
+  .card-edge{height:5px;width:100%;}
+  .card-body{padding:18px 18px 16px;flex:1;display:flex;flex-direction:column;}
+  .card-name{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;margin:0 0 8px;word-break:break-word;}
+  .card-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin:0 0 16px;flex:1;}
+  .card-meta{
+    display:flex;align-items:center;justify-content:space-between;font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;color:var(--ink-soft);padding-top:12px;border-top:1px solid var(--line);
+  }
+  .lang{display:flex;align-items:center;gap:6px;}
+  .lang-dot{width:8px;height:8px;border-radius:50%;}
+  .card-tags{display:flex;gap:6px;margin-bottom:10px;}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:5px;background:#F0EBFB;color:#6A3FD1;}
+  .tag.priv{background:#FCEFE3;color:#B5651D;}
+  .state-msg{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-soft);padding:30px 0;}
+
+  /* ============ TIMELINE (experience/education — empty by default) ============ */
+  .timeline{border-left:2px solid var(--line);padding-left:24px;margin-left:6px;}
+  .timeline-item{position:relative;padding-bottom:26px;}
+  .timeline-item::before{
+    content:"";position:absolute;left:-30px;top:4px;width:10px;height:10px;
+    border-radius:50%;background:var(--accent);border:2px solid var(--bg);
+  }
+  .timeline-item .when{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);margin-bottom:4px;}
+  .timeline-item .what{font-weight:600;font-size:15px;margin-bottom:4px;}
+  .timeline-item .where{font-size:13.5px;color:var(--ink-soft);}
+  .empty-timeline{
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-soft);
+    border:1px dashed var(--line);border-radius:var(--radius);padding:22px;background:var(--card);
+  }
+  .empty-timeline code{background:var(--bg);padding:2px 6px;border-radius:4px;color:var(--accent);}
+
+  /* ============ CONTACT ============ */
+  .contact-box{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:34px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+  }
+  .contact-links{display:flex;gap:16px;flex-wrap:wrap;}
+  .contact-links a{
+    font-family:'JetBrains Mono',monospace;font-size:13.5px;text-decoration:none;color:var(--ink);
+    padding:10px 16px;border:1px solid var(--line);border-radius:8px;transition:all .15s;
+  }
+  .contact-links a:hover{border-color:var(--accent);color:var(--accent);}
+
+  footer{
+    border-top:1px solid var(--line);padding:28px 0 50px;display:flex;justify-content:space-between;
+    align-items:center;flex-wrap:wrap;gap:12px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-soft);
+  }
+  footer a{text-decoration:none;color:var(--accent);}
+
+  @media (max-width:600px){
+    header.top{flex-direction:column;align-items:flex-start;gap:14px;}
+    nav a{margin-left:0;margin-right:18px;}
+    .contact-box{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="logo">mahfuz<span>.</span>khan</div>
+    <nav>
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#work">projects</a>
+      <a href="#timeline">timeline</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <p class="eyebrow"><span class="dot"></span> pulling live from github/MAHFUZ-eng</p>
+    <h1 id="heroTitle">I ship small things<br>and keep <em>shipping</em>.</h1>
+    <p class="sub" id="heroSub">Games, tools, and experiments — mostly JavaScript, some C and TypeScript when a project calls for it.</p>
+    <div class="stat-line" id="statLine">reading repository index…</div>
+    <div class="cta-row">
+      <a class="btn primary" href="#work">See my projects</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+  <!-- ============ BUILD LOG ============ -->
+  <section id="log">
+    <p class="section-title">recent activity</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span></span><span></span><span></span></div>
+      <div id="termFeed"><div class="term-line grey">$ fetching latest commits<span class="cursor"></span></div></div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <p class="section-title">about</p>
+    <div class="about-grid">
+      <div class="about-text" id="aboutText"><!-- filled from CONFIG.bio --></div>
+      <ul class="fact-list" id="factList"><!-- filled from CONFIG.facts --></ul>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills">
+    <p class="section-title">skills — auto-ranked by repo count</p>
+    <div class="skills-grid" id="skillsGrid">
+      <p class="state-msg">calculating from repository languages…</p>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="work">
+    <p class="section-title">all projects</p>
+    <div class="controls" id="filters"></div>
+    <div class="grid" id="repoGrid"><p class="state-msg">loading repositories…</p></div>
+  </section>
+
+  <!-- ============ TIMELINE (experience / education) ============ -->
+  <section id="timeline">
+    <p class="section-title">experience &amp; education</p>
+    <div id="timelineWrap"><!-- filled from CONFIG.timeline, or empty-state --></div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <p class="section-title">contact</p>
+    <div class="contact-box">
+      <div>
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;margin:0 0 6px;">Let's build something.</p>
+        <p style="color:var(--ink-soft);font-size:14px;margin:0;">Open to collabs, freelance work, or just talking shop.</p>
+      </div>
+      <div class="contact-links" id="contactLinks"><!-- filled from CONFIG.social --></div>
+    </div>
+  </section>
+
+  <!-- ============ ADD FUTURE SECTIONS BELOW THIS LINE ============ -->
+  <!-- e.g. <section id="blog">...</section> or <section id="testimonials">...</section> -->
+
+  <footer>
+    <span id="footYear"></span>
+    <span><a href="https://github.com/MAHFUZ-eng" target="_blank">github.com/MAHFUZ-eng</a></span>
+  </footer>
+</div>
+
+<script>
+/* ======================================================================
+   CONFIG — edit everything here. This is the ONLY place you should need
+   to touch to update your bio, skills, timeline, and links.
+   Adding a new job/degree? Push an object into CONFIG.timeline.
+   Adding a new social link? Push into CONFIG.social.
+   ====================================================================== */
+const CONFIG = {
+  username: "MAHFUZ-eng",
+  name: "Mahfuz Khan Asif",
+  location: "Dhaka, Bangladesh",
+
+  // Hero copy — EDIT ME
+  heroTitleHTML: "I ship small things<br>and keep <em>shipping</em>.",
+  heroSub: "Games, tools, and experiments — mostly JavaScript, some C and TypeScript when a project calls for it. Everything below is pulled straight from my GitHub, so it's never out of date.",
+
+  // About section — EDIT ME
+  bio: [
+    "I'm Mahfuz, a developer who learns by building — games, small utilities, and full-stack experiments, one repo at a time.",
+    "Right now I'm focused on getting comfortable across the stack: JavaScript on the front end, a bit of C for fundamentals, and picking up TypeScript for anything that needs to scale."
+  ],
+  facts: [
+    { label: "Based in", value: "Dhaka, Bangladesh" },
+    { label: "Focus", value: "Web + game dev" },
+    { label: "Currently learning", value: "TypeScript" },
+    { label: "Status", value: "Open to opportunities" }
+  ],
+
+  // Timeline — leave empty for now, add entries like the example (commented out) when ready
+  timeline: [
+     { when: "2025 — Present", what: "B.Sc.in Software Engineeing", where: "Daffodil International University" },
+    // { when: "Jun 2025", what: "Frontend Intern", where: "Company Name" },
+  ],
+
+  // Social / contact links — EDIT ME
+  social: [
+    { label: "GitHub", url: "https://github.com/MAHFUZ-eng" },
+    { label: "Email", url: "mailto:mahfuzkhan710@gmail.com" },
+     { label: "LinkedIn", url: "https://www.linkedin.com/in/mahfuz-khan-asif-045444374/" },
+     { label: "Facebook", url: "https://www.facebook.com/profile.php?id=61584569459056" },
+  ]
+};
+
+const LANG_COLORS = {
+  JavaScript:"#F1E05A", TypeScript:"#3178C6", HTML:"#E44D26", CSS:"#563D7C",
+  C:"#555555", "C++":"#F34B7D", Java:"#B07219", Python:"#3572A5",
+  Shell:"#89E051", Go:"#00ADD8", Ruby:"#701516", PHP:"#4F5D95",
+  default:"#8B8FA3"
+};
+
+function timeAgo(dateStr){
+  const diff = (Date.now() - new Date(dateStr)) / 1000;
+  const units = [[31536000,"y"],[2592000,"mo"],[604800,"w"],[86400,"d"],[3600,"h"],[60,"m"]];
+  for(const [s,label] of units){
+    const v = Math.floor(diff/s);
+    if(v >= 1) return v + label + " ago";
+  }
+  return "just now";
+}
+function esc(str){
+  return (str||"").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+/* ---------- render static, non-API sections from CONFIG right away ---------- */
+function renderStaticSections(){
+  document.getElementById('heroTitle').innerHTML = CONFIG.heroTitleHTML;
+  document.getElementById('heroSub').textContent = CONFIG.heroSub;
+  document.getElementById('footYear').textContent = `© ${new Date().getFullYear()} ${CONFIG.name} — ${CONFIG.location}`;
+
+  document.getElementById('aboutText').innerHTML = CONFIG.bio.map(p => `<p>${esc(p)}</p>`).join('');
+  document.getElementById('factList').innerHTML = CONFIG.facts.map(f =>
+    `<li><span>${esc(f.label)}</span><b>${esc(f.value)}</b></li>`
+  ).join('');
+
+  document.getElementById('contactLinks').innerHTML = CONFIG.social.map(s =>
+    `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.label)}</a>`
+  ).join('');
+
+  const tlWrap = document.getElementById('timelineWrap');
+  if(CONFIG.timeline.length === 0){
+    tlWrap.innerHTML = `<div class="empty-timeline">Nothing added yet. Add jobs or education by pushing objects into <code>CONFIG.timeline</code> at the top of the script — each just needs <code>when</code>, <code>what</code>, and <code>where</code>.</div>`;
+  }else{
+    tlWrap.innerHTML = `<div class="timeline">${CONFIG.timeline.map(t => `
+      <div class="timeline-item">
+        <div class="when">${esc(t.when)}</div>
+        <div class="what">${esc(t.what)}</div>
+        <div class="where">${esc(t.where)}</div>
+      </div>`).join('')}</div>`;
+  }
+}
+
+/* ---------- fetch + render everything that depends on GitHub ---------- */
+async function initGitHub(){
+  const grid = document.getElementById('repoGrid');
+  const statLine = document.getElementById('statLine');
+  const termFeed = document.getElementById('termFeed');
+  const filters = document.getElementById('filters');
+  const skillsGrid = document.getElementById('skillsGrid');
+
+  try{
+    const [userRes, reposRes] = await Promise.all([
+      fetch(`https://api.github.com/users/${CONFIG.username}`),
+      fetch(`https://api.github.com/users/${CONFIG.username}/repos?per_page=100&sort=updated`)
+    ]);
+    if(!userRes.ok || !reposRes.ok) throw new Error('rate-limited-or-error');
+
+    const user = await userRes.json();
+    let repos = await reposRes.json();
+    repos = repos.filter(r => !r.fork);
+
+    const langs = new Set(repos.map(r => r.language).filter(Boolean));
+    const totalStars = repos.reduce((s,r) => s + r.stargazers_count, 0);
+    statLine.innerHTML = `
+      <span><b>${repos.length}</b> repositories</span>
+      <span><b>${langs.size}</b> languages</span>
+      <span><b>${totalStars}</b> stars</span>
+      <span><b>${user.followers ?? 0}</b> followers</span>
+    `;
+
+    // build log
+    const recent = [...repos].sort((a,b) => new Date(b.pushed_at) - new Date(a.pushed_at)).slice(0,5);
+    termFeed.innerHTML = recent.map(r => `
+      <div class="term-line"><span class="grey">${timeAgo(r.pushed_at).padEnd(9)}</span><span class="path">${esc(r.name)}</span> <span class="amber">${r.language ? '['+esc(r.language)+']' : ''}</span></div>
+    `).join('') + `<div class="term-line grey">$ <span class="cursor"></span></div>`;
+
+    // skills, auto-ranked by how many repos use each language
+    const counts = {};
+    repos.forEach(r => { if(r.language) counts[r.language] = (counts[r.language]||0) + 1; });
+    const ranked = Object.entries(counts).sort((a,b) => b[1]-a[1]);
+    const max = ranked.length ? ranked[0][1] : 1;
+    skillsGrid.innerHTML = ranked.length === 0
+      ? `<p class="state-msg">No language data yet.</p>`
+      : ranked.map(([lang,count]) => `
+        <div class="skill-row">
+          <div class="skill-label"><span>${esc(lang)}</span><b>${count} repo${count>1?'s':''}</b></div>
+          <div class="skill-track"><div class="skill-fill" style="width:${Math.round((count/max)*100)}%;background:${LANG_COLORS[lang]||LANG_COLORS.default}"></div></div>
+        </div>`).join('');
+
+    // filters + project grid
+    const langList = ["all", ...langs];
+    filters.innerHTML = langList.map(l =>
+      `<button class="chip ${l==='all'?'active':''}" data-lang="${esc(l)}">${esc(l)}</button>`
+    ).join('');
+
+    function render(langFilter){
+      const list = langFilter === 'all' ? repos : repos.filter(r => r.language === langFilter);
+      grid.innerHTML = list.length === 0
+        ? `<p class="state-msg">nothing here yet.</p>`
+        : list.map(r => {
+          const color = LANG_COLORS[r.language] || LANG_COLORS.default;
+          return `
+          <a class="card" href="${r.html_url}" target="_blank" rel="noopener">
+            <div class="card-edge" style="background:${color}"></div>
+            <div class="card-body">
+              <div class="card-tags">
+                ${r.private ? '<span class="tag priv">private</span>' : ''}
+                ${r.stargazers_count > 0 ? `<span class="tag">★ ${r.stargazers_count}</span>` : ''}
+              </div>
+              <p class="card-name">${esc(r.name)}</p>
+              <p class="card-desc">${esc(r.description) || 'No description yet.'}</p>
+              <div class="card-meta">
+                <span class="lang">${r.language ? `<span class="lang-dot" style="background:${color}"></span>${esc(r.language)}` : ''}</span>
+                <span>${timeAgo(r.pushed_at)}</span>
+              </div>
+            </div>
+          </a>`;
+        }).join('');
+    }
+    render('all');
+    filters.addEventListener('click', e => {
+      const btn = e.target.closest('.chip');
+      if(!btn) return;
+      filters.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      render(btn.dataset.lang);
+    });
+
+  }catch(err){
+    statLine.textContent = "couldn't reach the GitHub API right now — refresh in a minute.";
+    termFeed.innerHTML = `<div class="term-line grey">$ connection failed. GitHub's public API allows 60 requests/hour per visitor — try again shortly.</div>`;
+    skillsGrid.innerHTML = `<p class="state-msg">Skills will appear once the GitHub API responds.</p>`;
+    grid.innerHTML = `<p class="state-msg">Repositories will appear here once the GitHub API responds. <a href="https://github.com/${CONFIG.username}" target="_blank" style="color:var(--accent)">View the profile directly →</a></p>`;
+  }
+}
+
+renderStaticSections();
+initGitHub();
+</script>
+</body>
+</html>
